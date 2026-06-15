@@ -1,0 +1,680 @@
+.swiper-pagination-bullet-active {
+  background: #818181;
+}
+.swiper-pagination-bullet {
+  width: 13px;
+  height: 13px;
+}
+/* smooth scrollbar for messages */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 999px;
+}
+
+/* message bubble max width */
+.message-max {
+  max-width: 70%;
+}
+
+@keyframes spinSlow {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 1.1s linear infinite;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+/* ============ TIMELINE ANIMATIONS ============ */
+
+/* Gradient progress line with glow effect */
+.timeline-progress {
+  background: linear-gradient(to bottom, #232323 0%, #00584e 50%, #00796b 100%);
+  box-shadow: 0 0 12px rgba(0, 88, 78, 0.5), 0 0 24px rgba(0, 88, 78, 0.3);
+}
+
+/* Animated pulse at the end of progress line */
+@keyframes timelinePulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.timeline-pulse {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 8px;
+  height: 8px;
+  background: #00584e;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: timelinePulse 2s ease-in-out infinite;
+  box-shadow: 0 0 0 0 rgba(0, 88, 78, 0.7), 0 0 8px rgba(0, 88, 78, 0.6);
+}
+
+.timeline-pulse::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  background: rgba(0, 88, 78, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: timelinePulse 2s ease-in-out infinite;
+  animation-delay: 0.3s;
+}
+
+/* Step fade-in animation with slight slide */
+@keyframes timelineStepAppear {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.timeline-step-appear {
+  animation: timelineStepAppear 0.6s ease-out forwards;
+}
+
+/* Icon completion animation with scale and glow */
+@keyframes iconComplete {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(35, 35, 35, 0);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 0 8px rgba(0, 88, 78, 0.3), 0 0 20px rgba(0, 88, 78, 0.2);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(35, 35, 35, 0);
+  }
+}
+
+.timeline-icon-complete {
+  animation: iconComplete 0.5s ease-out;
+}
+
+/* Loading state animation */
+@keyframes iconLoading {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(0, 88, 78, 0.4);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 6px rgba(0, 88, 78, 0.1);
+  }
+}
+
+.timeline-icon-loading {
+  animation: iconLoading 1.5s ease-in-out infinite;
+}
+
+/* Add subtle hover effect to completed steps */
+.timeline-step-appear:hover .timeline-icon-complete {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 88, 78, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* ============ STEP COMPLETION EFFECTS ============ */
+
+/* Ripple effect when step completes */
+@keyframes stepRipple {
+  0% {
+    width: 44px;
+    height: 44px;
+    opacity: 0.8;
+  }
+  100% {
+    width: 80px;
+    height: 80px;
+    opacity: 0;
+  }
+}
+
+.step-ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border: 2px solid #00584e;
+  border-radius: 50%;
+  animation: stepRipple 0.6s ease-out;
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* Sparkle particles */
+.step-particles {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 20;
+}
+
+@keyframes particleBurst {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--angle)) translateY(-30px)
+      scale(0);
+    opacity: 0;
+  }
+}
+
+.particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: linear-gradient(135deg, #ffd700, #ffa500);
+  border-radius: 50%;
+  animation: particleBurst 0.8s ease-out forwards;
+  box-shadow: 0 0 4px rgba(255, 215, 0, 0.8);
+}
+
+.particle:nth-child(odd) {
+  background: linear-gradient(135deg, #00584e, #00796b);
+  box-shadow: 0 0 4px rgba(0, 88, 78, 0.8);
+}
+
+/* ============ CONFETTI CELEBRATION ============ */
+
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 0;
+  animation: confettiFall 3s ease-out forwards;
+  border-radius: 2px;
+  z-index: 9999;
+}
+
+/* ============ ACTION CARD ANIMATIONS ============ */
+
+@keyframes actionCardHover {
+  0% {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  100% {
+    box-shadow: 0 10px 30px rgba(0, 88, 78, 0.15);
+  }
+}
+
+.action-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.action-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 88, 78, 0.05),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+
+.action-card:hover::before {
+  left: 100%;
+}
+
+/* Icon bounce on button hover */
+@keyframes bounceSmall {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+}
+
+.animate-bounce-small {
+  animation: bounceSmall 0.5s ease;
+}
+
+/* Action button enhanced hover */
+.action-btn {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.action-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  transition: width 0.6s, height 0.6s;
+}
+
+.action-btn:hover::after {
+  width: 300px;
+  height: 300px;
+}
+
+/* ============ TOOLTIP SPRING ANIMATIONS ============ */
+
+@keyframes tooltipSpring {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(-10px);
+  }
+  50% {
+    transform: scale(1.05) translateY(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.tooltip-spring {
+  animation: tooltipSpring 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ============ SUCCESS TOAST ANIMATIONS ============ */
+
+@keyframes successToastSlide {
+  0% {
+    transform: translateX(100%) scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-10px) scale(1.02);
+  }
+  100% {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.success-toast {
+  animation: successToastSlide 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes scaleCheck {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-scale-check {
+  animation: scaleCheck 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  animation-delay: 0.3s;
+  animation-fill-mode: backwards;
+}
+
+/* ============ REVIEW BUTTON PULSE ============ */
+
+@keyframes reviewPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 88, 78, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(0, 88, 78, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 88, 78, 0);
+  }
+}
+
+.review-btn-pulse {
+  animation: reviewPulse 2s infinite;
+}
+
+.review-btn-pulse:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* ============ SHIMMER EFFECT ============ */
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+/* Auth Sidebar */
+.auth-slider {
+  background-image: url("/imgs/auth-sidebar-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-left: 2%;
+}
+.custom-bullet {
+  width: 10px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: inline-block;
+  transition: all 0.3s ease;
+  margin: 5px;
+}
+
+.custom-bullet.swiper-pagination-bullet-active {
+  width: 10px;
+  height: 10px;
+  background: white;
+}
+
+/* Hide default Swiper navigation buttons */
+.swiper-button-prev,
+.swiper-button-next {
+  display: none;
+}
+.custom-swiper-pagination {
+  background: #c8ffec0d;
+  border: 1px solid gray;
+  border-radius: 30px;
+  padding: 5px 20px;
+  width: unset !important;
+}
+.auth-form {
+  background-image: url("/imgs/auth-form.png"), url("/imgs/auth-bottom.png");
+  background-position: right top, center;
+  background-repeat: no-repeat, no-repeat;
+  background-size: auto, cover;
+}
+.logo-mobile {
+  display: none;
+}
+.logo-pc {
+  display: block;
+}
+
+/* Onboarding Layout */
+.onboard-layout {
+  background-image: url("/imgs/onbard-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+.onboard-header-sp {
+  display: none;
+}
+.onboard-header-pc {
+  display: block;
+}
+.question-box {
+  background-image: url("/imgs/question-box-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* Dashboard */
+.dash,
+.file,
+.setting,
+.bank {
+  background-image: url("/imgs/dash-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.action-container {
+  background-image: url("/imgs/action-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+/* Chat */
+.chat-container {
+  background-image: url("/imgs/chat-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+textarea.chat-input {
+  height: 52px !important;
+  overflow: hidden;
+  resize: none;
+  width: 100%;
+  border-radius: 0.5rem;
+  background-color: #f9f9f9;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #374151;
+  font-size: 0.875rem;
+  outline: none;
+  box-shadow: none;
+}
+textarea.chat-input::placeholder {
+  color: #717171;
+}
+.msg-list::-webkit-scrollbar {
+  display: none;
+}
+/* Sign Modal Tabs */
+.sign-tab-list .MuiTabs-flexContainer {
+  justify-content: space-between;
+}
+.dash .css-13xfq8m-MuiTabPanel-root {
+  padding: 0 !important;
+}
+/* File */
+.file .css-1gsv261 {
+  border: none;
+}
+.file .css-w8dmq8 {
+  padding: 20px 50px;
+}
+.file .css-hzcega-MuiTabs-list {
+  display: inline-block;
+  border-bottom: 1px solid gray;
+}
+.file th {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  cursor: pointer;
+  user-select: none;
+  font-weight: unset;
+  font-size: 14px;
+  color: #232323;
+}
+.file .css-13xfq8m-MuiTabPanel-root {
+  padding: 30px 0 0 0;
+}
+
+.file .mobile-shape {
+  display: none;
+}
+.setting .css-w8dmq8 {
+  padding: 20px 50px;
+}
+.setting .css-13xfq8m-MuiTabPanel-root {
+  padding: 30px 0 0 0;
+}
+.setting .css-hzcega-MuiTabs-list {
+  display: inline-block;
+  border-bottom: 1px solid gray;
+}
+.setting .css-1gsv261 {
+  border: none;
+}
+.email-status.toast__failure,
+.sign-status.toast__failure {
+  min-width: unset !important;
+  padding: unset !important;
+  border-radius: unset !important;
+  background-color: unset !important;
+  box-shadow: unset !important;
+  color: unset !important;
+  text-align: unset !important;
+}
+
+/* Auth Slider */
+.auth-slider .swiper-pagination-lock {
+  display: block !important;
+}
+
+@media screen and (max-width: 768px) {
+  .logo-mobile {
+    display: block;
+  }
+  .logo-pc {
+    display: none;
+  }
+  .auth-slider {
+    margin: 0;
+  }
+  .auth-form {
+    background-image: none;
+  }
+  .auth-layout {
+    background-image: url("/imgs/auth-mb-1.png"), url("/imgs/auth-mb-2.png");
+    background-position: right top, center;
+    background-repeat: no-repeat, no-repeat;
+    background-size: auto, cover;
+  }
+  .onboard-layout {
+    background-image: url("/imgs/onboard-sp-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+    padding: 20px;
+    padding-bottom: 50px;
+  }
+  .onboard-header-sp {
+    display: flex;
+    justify-content: space-between;
+  }
+  .onboard-header-pc {
+    display: none;
+  }
+  .message-max {
+    max-width: 100%;
+  }
+  .file {
+    padding: 12px;
+  }
+  .file .pc-shape {
+    display: none;
+  }
+  .file .css-w8dmq8 {
+    padding: 20px 0;
+  }
+  .file .pc-shape {
+    display: none;
+  }
+  .file .mobile-shape {
+    display: block;
+  }
+  .setting {
+    padding: 12px;
+  }
+  .setting .css-w8dmq8 {
+    padding: 20px 0;
+  }
+  .toast__message:has(.email-status) {
+    width: 55% !important;
+  }
+}
